@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', credentialsId: 'GITHUB', url: 'https://github.com/codewithmuh/three-tier-devsecops-project.git'
+                git branch: 'main', credentialsId: 'GITHUB', url: 'https://github.com/Chirag21-dev/jenkins_3tierappmonitoring.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -29,10 +29,10 @@ pipeline {
                         sh ''' 
                             $SCANNER_HOME/bin/sonar-scanner \
                             -Dsonar.projectKey=frontend \
-                            -Dsonar.sources=. \
-                            -Dsonar.host.url=http://44.244.210.204:9000 \
-                            -Dsonar.login=sqp_28cec81454b231cb6e7548987c134fe9213a0e93
-                        '''
+                            -Dsonar.sources=. '''
+                            /*-Dsonar.host.url=http://44.244.210.204:9000 \
+                            -Dsonar.login=sqp_28cec81454b231cb6e7548987c134fe9213a0e93 */
+                        
                     }
                 }
             }
@@ -84,7 +84,7 @@ pipeline {
                 sh 'trivy image ${REPOSITORY_URI}${AWS_ECR_REPO_NAME}:${BUILD_NUMBER} > trivyimage.txt' 
             }
         }
-        stage('Checkout Code') {
+        /*stage('Checkout Code') {
             steps {
                 git branch: 'main', credentialsId: 'GITHUB', url: 'https://github.com/codewithmuh/three-tier-devsecops-project.git'
             }
@@ -117,6 +117,6 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
     }
 }
