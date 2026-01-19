@@ -22,14 +22,15 @@ resource "aws_internet_gateway" "igw" {
 
 # Resource to create a public subnet within the VPC
 resource "aws_subnet" "public-subnet" {
+  for_each = var.public_subnets
   # VPC to associate the subnet with
   vpc_id = aws_vpc.vpc.id
   
   # CIDR block for the subnet's IP range
-  cidr_block = "10.0.1.0/24"
+  cidr_block = each.value.cidr
   
   # Availability zone where the subnet will be located
-  availability_zone = "us-west-2a"
+  availability_zone = each.value.az
   
   # Automatically assign public IPs to instances launched in this subnet
   map_public_ip_on_launch = true
