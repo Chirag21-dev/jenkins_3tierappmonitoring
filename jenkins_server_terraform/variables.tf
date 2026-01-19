@@ -5,17 +5,17 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "public_subnets" {
-  description = "Public subnets with CIDR and AZ"
-  type = map(object({
-    cidr = string
-    az   = string
-  }))
-  default = {
-    subnet-a = { cidr = "10.0.1.0/24", az = "us-east-1a" }
-    subnet-b = { cidr = "10.0.2.0/24", az = "us-east-1b" }
-  }
-}
+#variable "public_subnets" {
+  #description = "Public subnets with CIDR and AZ"
+  #type = map(object({
+    #cidr = string
+    #az   = string
+  #}))
+  #default = {
+    #subnet-a = { cidr = "10.0.1.0/24", az = "us-east-1a" }
+    #subnet-b = { cidr = "10.0.2.0/24", az = "us-east-1b" }
+  #}
+#}
 
 # Networking Configuration
 
